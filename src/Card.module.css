@@ -1,0 +1,13 @@
+.ProductPage{
+    width: 100%;
+    padding: auto;
+    text-align: center;
+}
+
+.Card{
+    width: 30%;
+    height: 200px;
+    margin: 1.2%;
+    background-color: red;
+    float: left;
+}

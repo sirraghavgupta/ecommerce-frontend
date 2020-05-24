@@ -1,10 +1,12 @@
 import React from 'react';
+
+import Layout from './Layout';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>raghav gupts is awesome</h1>
+      <Layout />
     </div>
   );
 }
