@@ -6,7 +6,7 @@
     top: 0;
     background-color:#00737E;;
     z-index: 200;
-    transition : transform 0.3s ease-out;
+    transition : transform 0.3s ease-out 0.1s;
     overflow-y: scroll;
 }
 
