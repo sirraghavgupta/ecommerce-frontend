@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.navItem{
+    color: white!important;
+}
+
+.navbar{
+  padding: 1.2rem 1rem;
+}
+
+.bg{
+    background-color: #00737e!important;   
+}
+
+
+/*hover effect for all the navbar otems like home, about and the login signup button also*/
+.navbar-light .navbar-nav .nav-link:hover{
+  background-color: rgb(255, 255, 255);      
+  color: #2500bc;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px 2px rgba(255,255,255,0.4),
+             -1px -1px 2px 2px rgba(255,255,255,0.4);
+
+}
+
+/* -----------------------------------------------------------------------------------------*/
+
+/* for branding ---------------------------------------------------- */
+.brand{
+  color: #fff;
+  font-family: 'Lato';
+  text-transform: none;
+  letter-spacing: 3px;
+  text-shadow: 0px 4px 3px rgba(255,255,255,0.4),
+                 0px 8px 13px rgba(255,255,255,0.1),
+                 0px 18px 23px rgba(255,255,255,0.1);
+}
+
+.brand:hover{
+  color: #fcca42;
+  /*font-size: 16px;*/
+}
+/*  -----------------------------------------------------------------*/
+
+
+/* for the search button ---------------------------------- */
+.btn-outline-success{
+  color: #fff;
+  background-color: transparent;
+  line-height: 1.35;
+  border-color: #fff;
+}
+
+.btn-outline-success:hover{
+  color: #2500bc;
+  background-color: #fff;
+  box-shadow: 1px 1px 2px 2px rgba(255,255,255,0.4),
+             -1px -1px 2px 2px rgba(255,255,255,0.4);
+}
+/* ----------------------------------------------------------*/
+
+
+/* for the search bar ---------------------------------------*/
+/*.form-control{
+    line-height: 1.0;
+}*/
+
+.form-inline .form-control{
+    width: 400px;
+    line-height: 1.0;
+}
+.form-inline .form-control:hover{
+    width: 400px;
+    line-height: 1.0;
+  box-shadow: 1px 1px 2px 2px rgba(255,255,255,0.4),
+             -1px -1px 2px 2px rgba(255,255,255,0.4);
+}

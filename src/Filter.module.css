@@ -1,0 +1,17 @@
+.Filter *{
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 0;
+    box-sizing: border-box;
+}
+
+.FilterType{
+    text-transform: capitalize;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    background-color:  #2BA1AD;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}

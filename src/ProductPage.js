@@ -1,12 +1,12 @@
 import React from 'react';
-import Card from './Card';
+import ProductGrid from './ProductGrid';
+import Filters from './Filters';
 
 const ProductPage = () => {
-//   const style = {};
-
   return (
     <div>
-      <Card />
+      <Filters />
+      <ProductGrid />
     </div>
   );
 };

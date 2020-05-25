@@ -1,0 +1,33 @@
+.ProductCard{
+    margin-top: 15px;
+    border-color : rgba(0, 115, 126, 0.1);
+}
+
+.Image{
+    width: 100%;
+    height: 250px;
+}
+
+.Image img{
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+.Button{
+    width: 100%;
+    margin: 5px 0;
+    background-color: #00737E;
+    border-color: #00737E;
+}
+
+.Button:hover{
+    background-color: white;
+    border-color: #00737E;
+    color : #00737E
+}

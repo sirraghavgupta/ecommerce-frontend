@@ -3,6 +3,7 @@ import Toolbar from './Toolbar';
 import Aux from './Aux';
 import CategoryDrawer from './CategoryDrawer';
 import Main from './Main';
+import ProductPage from './ProductPage';
 
 /**
  * this is a component which contains the top toolbar and the sidebar for
@@ -41,6 +42,8 @@ const Layout = () => {
     <Aux>
       <Toolbar toggleCategoryBar={categoryDrawerToggleHandler} />
 
+      {/* <Toolbar toggleCategoryBar={categoryDrawerToggleHandler} /> */}
+
       <CategoryDrawer
         toggleHandler={categoryDrawerToggleHandler}
         showDrawer={showCategoryDrawer}
@@ -48,7 +51,8 @@ const Layout = () => {
         categoryClickHandler={categoryClickHandler}
       />
       <Main>
-        <p>
+        <ProductPage />
+        {/* <p>
           Old unsatiable our now but considered travelling impression. In excuse
           hardly summer in basket misery. By rent an part need. At wrong of of
           water those linen. Needed oppose seemed how all. Very mrs shed shew
@@ -85,7 +89,7 @@ const Layout = () => {
           decay voice there to. Preserved be mr cordially incommode as an. He
           doors quick child an point at. Had share vexed front least style off
           why him. His having within saw become ask passed misery giving..
-        </p>
+        </p> */}
       </Main>
     </Aux>
   );

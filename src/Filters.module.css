@@ -1,0 +1,13 @@
+.Filters{
+    width: 20%;
+    border-right: 1px solid rgba(0, 115, 126, 0.1);
+    /* border-bottom: 1px solid rgba(0, 115, 126, 0.1); */
+
+    background-color:white;
+    float: left;
+    box-sizing: border-box;
+    margin-top: 15px;
+    /* display: inline-block;    */
+    /* height: 100%; */
+    /* float: left; */
+}
