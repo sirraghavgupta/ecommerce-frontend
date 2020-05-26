@@ -1,12 +1,20 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import Layout from './Layout';
-import './App.css';
+import ProductsPage from './ProductsPage';
+import ProductPage from './ProductPage';
 
 function App() {
+  const routes = (
+    <Switch>
+      <Route path="/product" component={ProductPage} />
+      <Route path="/" component={ProductsPage} />
+    </Switch>
+  );
   return (
-    <div className="App">
-      <Layout />
+    <div>
+      <Layout>{routes}</Layout>
     </div>
   );
 }

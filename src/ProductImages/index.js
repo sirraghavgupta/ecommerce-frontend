@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Button } from 'react-bootstrap';
-import SecondaryImageThumbnail from './SecondaryImageThumbnail';
+import SecondaryImageThumbnail from '../SecondaryImageThumbnail';
 import classes from './ProductImages.module.css';
 
 const ProductImages = (props) => {
   const { product } = props;
   const { primaryImage, secondaryImages } = product;
 
-  const thumbnails = secondaryImages.concat(primaryImage);
+  const thumbnails = [...secondaryImages, primaryImage];
   /**
    * problem in this component - this line is getting printed twice everytime.
    * but use effis printing only once. i dont know why.

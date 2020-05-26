@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductImages from './ProductImages';
-import ProductDetails from './ProductDetails';
+import ProductImages from '../ProductImages';
+import ProductDetails from '../ProductDetails';
 import classes from './ProductPage.module.css';
 
 const ProductPage = () => {

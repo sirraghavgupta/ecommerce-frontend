@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './CategoryDrawer.module.css';
-import Aux from './Aux';
-import Backdrop from './Backdrop';
+import Aux from '../Aux';
+import Backdrop from '../Backdrop';
 
 const CategoryDrawer = (props) => {
   const {

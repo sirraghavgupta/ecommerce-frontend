@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Toolbar.module.css';
-import Hamburger from './Hamburger';
+import Hamburger from '../Hamburger';
 
 const Toolbar = (props) => {
   const { toggleCategoryBar } = props;

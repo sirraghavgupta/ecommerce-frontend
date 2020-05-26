@@ -1,5 +1,5 @@
 import React from 'react';
-import Filter from './Filter';
+import Filter from '../Filter';
 import classes from './Filters.module.css';
 
 const Filters = () => {

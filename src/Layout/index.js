@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import Toolbar from './Toolbar';
-import Aux from './Aux';
-import CategoryDrawer from './CategoryDrawer';
-import Main from './Main';
-import ProductsPage from './ProductsPage';
-import ProductPage from './ProductPage';
+import Toolbar from '../Toolbar';
+import Aux from '../Aux';
+import CategoryDrawer from '../CategoryDrawer';
+import Main from '../Main';
 
 /**
  * this is a component which contains the top toolbar and the sidebar for
  * categories. it will be the main default component of the page.
  */
-const Layout = () => {
+const Layout = (props) => {
+  const { children } = props;
+
   const [showCategoryDrawer, setShowCategoryDrawer] = useState(false);
   const [categoryList, setCategoryList] = useState([
     { id: '100', name: 'women' },
@@ -51,10 +51,7 @@ const Layout = () => {
         categoryList={categoryList}
         categoryClickHandler={categoryClickHandler}
       />
-      <Main>
-        {/* <ProductsPage /> */}
-        <ProductPage />
-      </Main>
+      <Main>{children}</Main>
     </Aux>
   );
 };

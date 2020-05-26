@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from './Checkbox';
+import Checkbox from '../Checkbox';
 import classes from './Filter.module.css';
 
 const Filter = (props) => {
@@ -10,7 +10,7 @@ const Filter = (props) => {
   ));
 
   return (
-    <div className = {classes.Filter}>
+    <div className={classes.Filter}>
       <p className={classes.FilterType}>{filterType}</p>
       {filterChoices}
     </div>

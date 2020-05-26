@@ -1,5 +1,5 @@
 import React from 'react';
-import VariationChoice from './VariationChoice';
+import VariationChoice from '../VariationChoice';
 import classes from './ProductDetails.module.css';
 
 const ProductDetails = () => {
