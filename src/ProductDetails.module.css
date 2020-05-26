@@ -1,0 +1,32 @@
+.ProductDetails{
+    width: 60%;
+    height: 500px;
+    float: left;
+    margin-top: 5px;
+    /* border: 1px solid brown; */
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.Table{
+    width: 100%;
+    /* text-align: center; */
+}
+.Label{
+    width: 20%;
+    text-transform: capitalize;
+    border-right: 1px solid #ccc;
+    padding : 10px;
+    vertical-align: top;
+}
+.Value{
+    width: 80%;
+    text-transform: capitalize;
+    padding: 10px;
+    padding-left: 20px;
+}
+.Name{
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+}

@@ -1,0 +1,30 @@
+.VariationChoice{
+    width: 100%;
+    /* border: 1px solid rgba(0, 115, 126, 0.1); */
+    margin-top: 20px;
+}
+.VariationChoice *{
+    margin: 5px;
+}
+.FilterType{
+    font-size: 16px;
+    color: teal;
+    text-transform: capitalize;
+    display: inline-block;
+}
+
+.Thumbnail{
+    font-size: 15px;
+    display: inline-block;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #00737e;
+    background-color: #00737e;
+    color : white;
+}
+
+.Thumbnail:hover{
+    color: #00737e;
+    background-color:white;
+}

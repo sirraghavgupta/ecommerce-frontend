@@ -26,7 +26,9 @@ p{
     border-color: #00737E;
 }
 
-.Button:hover{
+.Button:hover,
+.Button:focus,
+.Button:active{
     background-color: white;
     border-color: #00737E;
     color : #00737E

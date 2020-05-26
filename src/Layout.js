@@ -3,6 +3,7 @@ import Toolbar from './Toolbar';
 import Aux from './Aux';
 import CategoryDrawer from './CategoryDrawer';
 import Main from './Main';
+import ProductsPage from './ProductsPage';
 import ProductPage from './ProductPage';
 
 /**
@@ -51,45 +52,8 @@ const Layout = () => {
         categoryClickHandler={categoryClickHandler}
       />
       <Main>
+        {/* <ProductsPage /> */}
         <ProductPage />
-        {/* <p>
-          Old unsatiable our now but considered travelling impression. In excuse
-          hardly summer in basket misery. By rent an part need. At wrong of of
-          water those linen. Needed oppose seemed how all. Very mrs shed shew
-          gave you. Oh shutters do removing reserved wandered an. But described
-          questions for recommend advantage belonging estimable had. Pianoforte
-          reasonable as so am inhabiting. Chatty design remark and his abroad
-          figure but its. Sportsman do offending supported extremity breakfast
-          by listening. Decisively advantages nor expression unpleasing she led
-          met. Estate was tended ten boy nearer seemed. As so seeing latter he
-          should thirty whence. Steepest speaking up attended it as. Made neat
-          an on be gave show snug tore. Affronting everything discretion men now
-          own did. Still round match we to. Frankness pronounce daughters
-          remainder extensive has but. Happiness cordially one determine
-          concluded fat. Plenty season beyond by hardly giving of. Consulted or
-          acuteness dejection an smallness if. Outward general passage another
-          as it. Very his are come man walk one next. Delighted prevailed
-          supported too not remainder perpetual who furnished. Nay affronting
-          bed projection compliment instrument. Rooms oh fully taken by worse
-          do. Points afraid but may end law lasted. Was out laughter raptures
-          returned outweigh. Luckily cheered colonel me do we attacks on highest
-          enabled. Tried law yet style child. Bore of true of no be deal.
-          Frequently sufficient in be unaffected. The furnished she concluded
-          depending procuring concealed. Dashwood contempt on mr unlocked
-          resolved provided of of. Stanhill wondered it it welcomed oh. Hundred
-          no prudent he however smiling at an offence. If earnestly extremity he
-          he propriety something admitting convinced ye. Pleasant in to although
-          as if differed horrible. Mirth his quick its set front enjoy hoped had
-          there. Who connection imprudence middletons too but increasing
-          celebrated principles joy. Herself too improve gay winding ask expense
-          are compact. New all paid few hard pure she. Lose eyes get fat shew.
-          Winter can indeed letter oppose way change tended now. So is improve
-          my charmed picture exposed adapted demands. Received had end produced
-          prepared diverted strictly off man branched. Known ye money so large
-          decay voice there to. Preserved be mr cordially incommode as an. He
-          doors quick child an point at. Had share vexed front least style off
-          why him. His having within saw become ask passed misery giving..
-        </p> */}
       </Main>
     </Aux>
   );
