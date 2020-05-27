@@ -74,6 +74,10 @@ const Cart = () => {
       <CartItem product={product} variationIndex="0" />
       <CartItem product={product} variationIndex="1" />
       <CartItem product={product} variationIndex="2" />
+      <div className={classes.CartDetails}>
+        <p>Total items in cart : </p>
+        <p>Total price : </p>
+      </div>
       <div className={classes.Buttons}>
         <Button variant="primary" className={classes.Button}>
           Continue Shopping
