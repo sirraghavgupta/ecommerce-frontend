@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import Input from '../Input';
 import updateObject from '../Utilities/updateObject';
 import checkValidity from '../Utilities/FormValidation';
+import * as loginActions from '../store/actions';
+
 import classes from './Login.module.css';
 
-const Login = () => {
+const Login = (props) => {
   const [loginForm, setloginForm] = useState({
     email: {
       elementConfig: {
@@ -64,6 +67,11 @@ const Login = () => {
     setFormIsValid(formValid);
   };
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.doLogin(loginForm.email.value, loginForm.password.value);
+  };
+
   const formElements = Object.keys(loginForm).map((field) => (
     <Input
       key={field}
@@ -77,12 +85,25 @@ const Login = () => {
   return (
     <div className={classes.LoginForm}>
       <h1>Login</h1>
-      <form>{formElements}</form>
-      <Button variant="success" disabled={!formIsValid} active={formIsValid}>
-        Login
-      </Button>
+      <form>
+        {formElements}
+        <Button
+          variant="success"
+          disabled={!formIsValid}
+          active={formIsValid}
+          onClick={submitHandler}
+        >
+          Login
+        </Button>
+      </form>
     </div>
   );
 };
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    doLogin: (email, password) => dispatch(loginActions.login(email, password))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Login);

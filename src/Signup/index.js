@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 
+import axios from 'axios';
 import Input from '../Input';
 import updateObject from '../Utilities/updateObject';
 import checkValidity from '../Utilities/FormValidation';
@@ -83,6 +84,21 @@ const Signup = () => {
       isValid: true,
       touched: false
     },
+    middleName: {
+      elementConfig: {
+        type: 'text',
+        name: 'mniddleName',
+        placeholder: 'Your Middle Name'
+      },
+      label: 'Middle Name',
+      value: '',
+      validation: {
+        isCharOnly: false,
+        required: false
+      },
+      isValid: true,
+      touched: false
+    },
     lastName: {
       elementConfig: {
         type: 'text',
@@ -129,6 +145,30 @@ const Signup = () => {
     setFormIsValid(formValid);
   };
 
+  const submitHandler = (event) => {
+    console.log('clicked to signup.');
+    event.preventDefault();
+    const newCustomer = {
+      email: signupForm.email.value,
+      firstName: signupForm.firstName.value,
+      middleName: signupForm.middleName.value,
+      lastName: signupForm.lastName.value,
+      password: signupForm.password.value,
+      confirmPassword: signupForm.confirmPassword.value,
+      contact: signupForm.phoneNumber.value
+    };
+    console.log(newCustomer);
+
+    axios
+      .post('http://localhost:8080/register/customer', newCustomer)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const formElements = Object.keys(signupForm).map((field) => (
     <Input
       key={field}
@@ -143,7 +183,12 @@ const Signup = () => {
     <div className={classes.SignupForm}>
       <h1>Signup</h1>
       <form>{formElements}</form>
-      <Button variant="success" disabled={!formIsValid} active={formIsValid}>
+      <Button
+        variant="success"
+        disabled={!formIsValid}
+        active={formIsValid}
+        onClick={submitHandler}
+      >
         Signup
       </Button>
     </div>

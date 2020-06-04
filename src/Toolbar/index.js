@@ -1,9 +1,35 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import classes from './Toolbar.module.css';
 import Hamburger from '../Hamburger';
 
 const Toolbar = (props) => {
-  const { toggleCategoryBar } = props;
+  const { toggleCategoryBar, isAuthenticated } = props;
+
+  const navItems = isAuthenticated ? (
+    <ul>
+      <li>
+        <NavLink to="/orders">My Orders</NavLink>
+      </li>
+      <li>
+        <NavLink to="/logout">Logout</NavLink>
+      </li>
+      <li>
+        <NavLink to="/cart">Cart</NavLink>
+      </li>
+    </ul>
+  ) : (
+    <ul>
+      <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
+      <li>
+        <NavLink to="/signup">Signup</NavLink>
+      </li>
+    </ul>
+  );
 
   return (
     <header className={classes.header}>
@@ -22,22 +48,16 @@ const Toolbar = (props) => {
 
         <div className={classes.spacer} />
 
-        <div className={classes.navItems}>
-          <ul>
-            <li>
-              <a href="/">My Orders</a>
-            </li>
-            <li>
-              <a href="/">Login</a>
-            </li>
-            <li>
-              <a href="/">Cart</a>
-            </li>
-          </ul>
-        </div>
+        <div className={classes.navItems}>{navItems}</div>
       </nav>
     </header>
   );
 };
 
-export default Toolbar;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.login.accessToken != null
+  };
+};
+
+export default connect(mapStateToProps)(Toolbar);

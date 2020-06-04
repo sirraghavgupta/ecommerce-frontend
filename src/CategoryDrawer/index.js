@@ -7,19 +7,47 @@ const CategoryDrawer = (props) => {
   const {
     toggleHandler,
     showDrawer,
-    categoryList,
-    categoryClickHandler
+    categories,
+    categoryClickHandler,
+    backHandler
   } = props;
 
-  const categoryListItems = categoryList.map((category) => (
+  const categoryListItems = categories.map((category) => {
+    return (
+      <li
+        key={category.id}
+        className={classes.CategoryItem}
+        onClick={() => categoryClickHandler(category.id)}
+      >
+        {category.name}
+      </li>
+    );
+  });
+
+  let grandParentId = null;
+  if (categories.length > 0) {
+    if (categories[0].hasOwnProperty('parent')) {
+      if (categories[0].parent.hasOwnProperty('parent')) {
+        grandParentId = categories[0].parent.parent.id;
+      }
+    }
+  }
+
+  let backOption = (
     <li
-      key={category.id}
+      key="backOption"
       className={classes.CategoryItem}
-      onClick={() => categoryClickHandler(category.id)}
+      onClick={() => {
+        backHandler(grandParentId);
+      }}
     >
-      {category.name}
+      Back
     </li>
-  ));
+  );
+
+  if (categories.length > 0 && !categories[0].hasOwnProperty('parent')) {
+    backOption = null;
+  }
 
   let styling = [classes.CategoryDrawer, classes.Closed];
   if (showDrawer) {
@@ -32,7 +60,10 @@ const CategoryDrawer = (props) => {
 
       <div className={styling.join(' ')}>
         <nav className={classes.CategoryNav}>
-          <ul>{categoryListItems}</ul>
+          <ul>
+            {categoryListItems}
+            {backOption}
+          </ul>
         </nav>
       </div>
     </Aux>
