@@ -2,11 +2,17 @@ import React from 'react';
 import classes from './VariationChoice.module.css';
 
 const VariationChoice = (props) => {
-  const { attribute, values } = props;
+  const { attribute, values, activeValue } = props;
 
-  const thumbnails = values.map((value) => (
-    <div className={classes.Thumbnail}>{value}</div>
-  ));
+  const styling = [classes.Thumbnail, classes.Active];
+
+  const thumbnails = values.map((value) =>
+    value === activeValue ? (
+      <div className={classes.Thumbnail}>{value}</div>
+    ) : (
+      <div className={styling.join(' ')}>{value}</div>
+    )
+  );
 
   return (
     <div className={classes.VariationChoice}>

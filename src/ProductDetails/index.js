@@ -22,6 +22,7 @@ const ProductDetails = (props) => {
         <td className={classes.Value}>{requiredVariation.attributes[field]}</td>
       </tr>
     ));
+
     const fieldValueMap = new Map();
     product.variations.forEach((variation) => {
       console.log(variation);
@@ -43,7 +44,11 @@ const ProductDetails = (props) => {
 
     fieldChoices = [...fieldValueMap.keys()].map((key) => {
       return (
-        <VariationChoice attribute={key} values={[...fieldValueMap.get(key)]} />
+        <VariationChoice
+          attribute={key}
+          values={[...fieldValueMap.get(key)]}
+          activeValue={requiredVariation.attributes[key]}
+        />
       );
     });
   }

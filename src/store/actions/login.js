@@ -72,7 +72,10 @@ export const login = (email, password) => {
 
         const token = decodeJwtToken(response.data.access_token);
         const userRole = token.authorities[0].substring(5);
+
         console.log(userRole);
+        localStorage.setItem('userRole', userRole);
+
         dispatch(loginSuccess(accessToken, refreshToken, userRole));
         dispatch(checkAuthTimeout(response.data.expires_in));
       })

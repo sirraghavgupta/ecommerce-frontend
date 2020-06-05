@@ -56,7 +56,11 @@ const ProductPage = (props) => {
     <div className={classes.ProductPage}>
       <ProductImages
         primaryImage={desiredVariation.primaryImage}
-        secondaryImages={[...desiredVariation.secondaryImages]}
+        secondaryImages={
+          desiredVariation.secondaryImages
+            ? desiredVariation.secondaryImages
+            : []
+        }
       />
       <ProductDetails product={product} requestedVariationId={varId} />
     </div>
