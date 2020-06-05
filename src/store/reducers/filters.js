@@ -14,7 +14,7 @@ const fetchFiltersStart = (state) => {
 const fetchFiltersSuccess = (state, action) => {
   return updateObject(state, {
     loading: false,
-    filters: action.filteringData
+    filters: { ...action.filteringData }
   });
 };
 

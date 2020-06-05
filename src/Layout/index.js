@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Toolbar from '../Toolbar';
 import Aux from '../Aux';
 import CategoryDrawer from '../CategoryDrawer';
@@ -7,6 +8,8 @@ import * as actions from '../store/actions';
 import Main from '../Main';
 
 const Layout = (props) => {
+  console.log('=== [ LAYOUT ] ===', props);
+
   const {
     children,
     categories,
@@ -14,7 +17,8 @@ const Layout = (props) => {
     error,
     getCategories,
     toggleCategories,
-    showCategoryDrawer
+    showCategoryDrawer,
+    history
   } = props;
 
   // const [showCategoryDrawer, setShowCategoryDrawer] = useState(false);
@@ -35,7 +39,7 @@ const Layout = (props) => {
 
   const categoryClickHandler = (id) => {
     console.log('category clicked with id - ', id);
-    getCategories(id);
+    getCategories(id, history);
   };
 
   const backHandler = (newParentId) => {
@@ -71,9 +75,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCategories: (parentId) => dispatch(actions.fetchCategories(parentId)),
+    getCategories: (parentId, history) =>
+      dispatch(actions.fetchCategories(parentId, history)),
     toggleCategories: () => dispatch(actions.toggleCategoryDrawer())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

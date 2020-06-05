@@ -9,6 +9,7 @@ import Cart from './Cart';
 import Login from './Login';
 import Signup from './Signup';
 import Logout from './Logout';
+import HomePage from './HomePage';
 
 import * as loginActions from './store/actions';
 
@@ -31,7 +32,8 @@ function App(props) {
       <Route path="/product" component={ProductPage} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
-      <Route path="/" component={ProductsPage} />
+      <Route path="/products/:categoryId" component={ProductsPage} />
+      <Route path="/" component={HomePage} />
     </Switch>
   );
 
@@ -41,7 +43,8 @@ function App(props) {
         <Route path="/product" component={ProductPage} />
         <Route path="/cart" component={Cart} />
         <Route path="/logout" component={Logout} />
-        <Route path="/" component={ProductsPage} />
+        <Route path="/products/:categoryId" component={ProductsPage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     );
   }

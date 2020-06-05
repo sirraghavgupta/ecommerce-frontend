@@ -1,7 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { fetchProducts } from './products';
 import axios from '../../Axios/myInstance';
-import { fetchFilters } from './filters';
 
 export const toggleCategoryDrawer = () => {
   return {
@@ -29,7 +27,7 @@ export const fetchCategoriesFailed = (error) => {
   };
 };
 
-export const fetchCategories = (categoryId) => {
+export const fetchCategories = (categoryId, history) => {
   return (dispatch) => {
     dispatch(fetchCategoriesStart());
 
@@ -44,8 +42,8 @@ export const fetchCategories = (categoryId) => {
       .then((response) => {
         console.log(response);
         if (response.data.data.length === 0) {
-          dispatch(fetchProducts(categoryId));
-          dispatch(fetchFilters(categoryId));
+          console.log('pushing the history');
+          history.push(`/products/${categoryId}`);
           dispatch(toggleCategoryDrawer());
         } else {
           dispatch(fetchCategoriesSuccess(response.data.data));

@@ -1,23 +1,15 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import ProductCard from '../ProductCard';
 
-import * as productActions from '../store/actions';
-
 import classes from './ProductGrid.module.css';
 
 const ProductGrid = (props) => {
-  const { onLoadGetProducts, productItems } = props;
+  const { productItems } = props;
 
   console.log('======= props of GRID ****************', props);
-
-  useEffect(() => {
-    console.log('useEffect of Grid.');
-    onLoadGetProducts();
-  }, [onLoadGetProducts]);
 
   const productClickHandler = (productId, variationId) => {
     console.log('product id', `${productId} and variation id , ${variationId}`);
@@ -41,19 +33,4 @@ const ProductGrid = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    productItems: state.products.productItems,
-    loading: state.products.loading
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLoadGetProducts: () => dispatch(productActions.fetchProducts())
-  };
-};
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductGrid)
-);
+export default withRouter(ProductGrid);

@@ -1,5 +1,4 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
 
 import Filter from '../Filter';
 
@@ -8,17 +7,14 @@ import classes from './Filters.module.css';
 const Filters = (props) => {
   const { loading, error, filters } = props;
 
-  // const filters = [
-  //   { field: 'size', values: ['XS', 'S', 'M', 'L', 'XL'] },
-  //   { field: 'collar', values: ['indian', 'chinese'] },
-  //   { field: 'color', values: ['red', 'blue', 'green', 'yellow', 'orange'] },
-  //   { field: 'pockets', values: ['1', '2'] }
-  // ];
-
   console.log(props);
+  useEffect(() => {
+    console.log('useEffect of [ FILTERS ]');
+  });
 
   const filterElements = [];
-  if (Object.keys(filters).length > 0) {
+
+  if (filters && Object.keys(filters).length > 0) {
     const { fieldValues, brands } = filters;
 
     Object.keys(fieldValues).forEach((key) => {
@@ -35,12 +31,4 @@ const Filters = (props) => {
   return <div className={classes.Filters}>{filterElements}</div>;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    loading: state.filteringState.loading,
-    error: state.filteringState.error,
-    filters: state.filteringState.filters
-  };
-};
-
-export default connect(mapStateToProps)(Filters);
+export default Filters;
