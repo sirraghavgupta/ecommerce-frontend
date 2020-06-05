@@ -4,8 +4,7 @@ import SecondaryImageThumbnail from '../SecondaryImageThumbnail';
 import classes from './ProductImages.module.css';
 
 const ProductImages = (props) => {
-  const { product } = props;
-  const { primaryImage, secondaryImages } = product;
+  const { primaryImage, secondaryImages } = props;
 
   const thumbnails = [...secondaryImages, primaryImage];
   /**

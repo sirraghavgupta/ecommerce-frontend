@@ -6,7 +6,7 @@ const convertProductToVariationsArray = (products) => {
     const productId = product.productDto.id;
 
     product.variations.forEach((variation) => {
-      const { price, quantityAvailable } = variation;
+      const { price, quantityAvailable, primaryImage } = variation;
       const variationId = variation.id;
 
       productItems.push({
@@ -15,6 +15,7 @@ const convertProductToVariationsArray = (products) => {
         name,
         brand,
         price,
+        primaryImage,
         quantityAvailable,
         ...variation.attributes
       });

@@ -3,12 +3,17 @@ import { Card, Button } from 'react-bootstrap';
 import classes from './ProductCard.module.css';
 
 const ProductCard = (props) => {
-  const { imageUrl, productDetails } = props;
+  const { productDetails, clicked } = props;
 
   return (
-    <Card className={classes.ProductCard}>
+    <Card
+      className={classes.ProductCard}
+      onClick={() => {
+        clicked(productDetails.productId, productDetails.variationId);
+      }}
+    >
       <div className={classes.Image}>
-        <img src={imageUrl} alt="product" />
+        <img src={productDetails.primaryImage} alt="product" />
       </div>
       {/* <Card.Img variant="top" src={imageUrl} /> */}
       <Card.Body>

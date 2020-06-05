@@ -11,17 +11,19 @@ import App from './App';
 
 import * as serviceWorker from './serviceWorker';
 import loginReducer from './store/reducers/login';
-import productReducer from './store/reducers/products';
+import productsReducer from './store/reducers/products';
 import categoryReducer from './store/reducers/categories';
 import filterReducer from './store/reducers/filters';
+import productReducer from './store/reducers/product';
 
 import './index.css';
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  products: productReducer,
+  products: productsReducer,
   categoryDrawer: categoryReducer,
-  filteringState: filterReducer
+  filteringState: filterReducer,
+  productState: productReducer
 });
 
 const composeEnhancers =
