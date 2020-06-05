@@ -7,9 +7,17 @@ import * as actions from '../store/actions';
 import Main from '../Main';
 
 const Layout = (props) => {
-  const { children, categories, loading, error, getCategories } = props;
+  const {
+    children,
+    categories,
+    loading,
+    error,
+    getCategories,
+    toggleCategories,
+    showCategoryDrawer
+  } = props;
 
-  const [showCategoryDrawer, setShowCategoryDrawer] = useState(false);
+  // const [showCategoryDrawer, setShowCategoryDrawer] = useState(false);
 
   useEffect(() => {
     console.log('useEffect of LAYOUT');
@@ -22,7 +30,7 @@ const Layout = (props) => {
 
   const categoryDrawerToggleHandler = () => {
     console.log('clicked');
-    setShowCategoryDrawer((showDrawer) => !showDrawer);
+    toggleCategories();
   };
 
   const categoryClickHandler = (id) => {
@@ -56,13 +64,15 @@ const mapStateToProps = (state) => {
   return {
     categories: state.categoryDrawer.categories,
     loading: state.categoryDrawer.loading,
-    error: state.categoryDrawer.error
+    error: state.categoryDrawer.error,
+    showCategoryDrawer: state.categoryDrawer.showCategoryDrawer
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCategories: (parentId) => dispatch(actions.fetchCategories(parentId))
+    getCategories: (parentId) => dispatch(actions.fetchCategories(parentId)),
+    toggleCategories: () => dispatch(actions.toggleCategoryDrawer())
   };
 };
 

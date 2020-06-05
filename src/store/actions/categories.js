@@ -3,6 +3,12 @@ import { fetchProducts } from './products';
 import axios from '../../Axios/myInstance';
 import { fetchFilters } from './filters';
 
+export const toggleCategoryDrawer = () => {
+  return {
+    type: actionTypes.TOGGLE_CATEGORY_DRAWER
+  };
+};
+
 export const fetchCategoriesStart = () => {
   return {
     type: actionTypes.FETCH_CATEGORIES_START
@@ -40,6 +46,7 @@ export const fetchCategories = (categoryId) => {
         if (response.data.data.length === 0) {
           dispatch(fetchProducts(categoryId));
           dispatch(fetchFilters(categoryId));
+          dispatch(toggleCategoryDrawer());
         } else {
           dispatch(fetchCategoriesSuccess(response.data.data));
         }

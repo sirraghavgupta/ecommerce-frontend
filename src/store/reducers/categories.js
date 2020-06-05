@@ -4,7 +4,12 @@ import updateObject from '../../Utilities/updateObject';
 const initialState = {
   loading: false,
   error: null,
-  categories: []
+  categories: [],
+  showCategoryDrawer: false
+};
+
+const toggleCategoryDrawer = (state) => {
+  return updateObject(state, { showCategoryDrawer: !state.showCategoryDrawer });
 };
 
 const fetchCategoriesStart = (state) => {
@@ -29,6 +34,9 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.FETCH_CATEGORIES_FAILED:
       return fetchCategoriesFailed(state, action);
+
+    case actionTypes.TOGGLE_CATEGORY_DRAWER:
+      return toggleCategoryDrawer(state);
 
     default:
       return state;
