@@ -3,3 +3,4 @@ export { fetchProducts } from './products';
 export { fetchCategories, toggleCategoryDrawer } from './categories';
 export { fetchFilters } from './filters';
 export { fetchProduct } from './product';
+export { addToCart } from './cart';

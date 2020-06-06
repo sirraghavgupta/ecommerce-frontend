@@ -4,7 +4,12 @@ import SecondaryImageThumbnail from '../SecondaryImageThumbnail';
 import classes from './ProductImages.module.css';
 
 const ProductImages = (props) => {
-  const { primaryImage, secondaryImages } = props;
+  const {
+    primaryImage,
+    secondaryImages,
+    buyNowHandler,
+    addToCartHandler
+  } = props;
 
   const thumbnails = [...secondaryImages, primaryImage];
   /**
@@ -48,10 +53,18 @@ const ProductImages = (props) => {
       </div>
 
       <div className={classes.Buttons}>
-        <Button variant="primary" className={classes.Button}>
+        <Button
+          variant="primary"
+          className={classes.Button}
+          onClick={buyNowHandler}
+        >
           Buy now
         </Button>
-        <Button variant="primary" className={classes.Button}>
+        <Button
+          variant="primary"
+          className={classes.Button}
+          onClick={addToCartHandler}
+        >
           Add to cart
         </Button>
       </div>

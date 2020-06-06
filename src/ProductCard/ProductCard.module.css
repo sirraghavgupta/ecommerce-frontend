@@ -6,6 +6,8 @@
 .Image{
     width: 100%;
     height: 250px;
+    display: flex;
+    align-items: center;
 }
 
 .Image img{
@@ -32,4 +34,9 @@ p{
     background-color: white;
     border-color: #00737E;
     color : #00737E
+}
+
+.PropName{
+    font-size: 13px;
+    text-transform: capitalize;
 }

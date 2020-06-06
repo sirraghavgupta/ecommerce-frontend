@@ -17,7 +17,7 @@ const convertProductToVariationsArray = (products) => {
         price,
         primaryImage,
         quantityAvailable,
-        ...variation.attributes
+        attributes: { ...variation.attributes }
       });
     });
   });

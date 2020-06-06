@@ -5,6 +5,16 @@ import classes from './ProductCard.module.css';
 const ProductCard = (props) => {
   const { productDetails, clicked } = props;
 
+  const productAttributes = Object.keys(productDetails.attributes).map(
+    (propertyName) => (
+      <Card.Text>
+        <p className={classes.PropName}>
+          {propertyName} - {productDetails.attributes[propertyName]}
+        </p>
+      </Card.Text>
+    )
+  );
+
   return (
     <Card
       className={classes.ProductCard}
@@ -15,16 +25,11 @@ const ProductCard = (props) => {
       <div className={classes.Image}>
         <img src={productDetails.primaryImage} alt="product" />
       </div>
-      {/* <Card.Img variant="top" src={imageUrl} /> */}
       <Card.Body>
         <Card.Title>{productDetails.name}</Card.Title>
         <Card.Subtitle>Brand - {productDetails.brand}</Card.Subtitle>
-        <Card.Text>
-          <p>Price - {`Rs.${productDetails.price}`}</p>
-        </Card.Text>
-        <Card.Text>
-          <p>Size - {productDetails.size}</p>
-        </Card.Text>
+
+        {productAttributes}
 
         <Button variant="primary" className={classes.Button}>
           Buy now

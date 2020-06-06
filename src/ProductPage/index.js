@@ -52,9 +52,21 @@ const ProductPage = (props) => {
 
   console.log('@@@@ desired Variation = ', desiredVariation);
 
+  const onBuyNowHandler = (prodId, variantId) => {
+    console.log('buying product ', prodId, variantId);
+  };
+
+  const onAddToCartHandler = (prodId, variantId) => {
+    console.log('adding to cart ', prodId, variantId);
+  };
+
   return desiredVariation ? (
     <div className={classes.ProductPage}>
       <ProductImages
+        buyNowHandler={() => onBuyNowHandler(product.productDto.id, varId)}
+        addToCartHandler={() =>
+          onAddToCartHandler(product.productDto.id, varId)
+        }
         primaryImage={desiredVariation.primaryImage}
         secondaryImages={
           desiredVariation.secondaryImages
