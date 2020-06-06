@@ -10,18 +10,26 @@ import Login from './Login';
 import Signup from './Signup';
 import Logout from './Logout';
 import HomePage from './HomePage';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 import * as loginActions from './store/actions';
 
 function App(props) {
-  const { onLoadTryAutoLogin, isAuthenticated, userRole } = props;
+  const {
+    onLoadTryAutoLogin,
+    isAuthenticated,
+    userRole,
+    history,
+    authRedirectPath
+  } = props;
 
   useEffect(() => {
     console.log('useEffect of APP');
   });
 
   useEffect(() => {
-    onLoadTryAutoLogin();
+    onLoadTryAutoLogin(history, authRedirectPath);
   }, [onLoadTryAutoLogin]);
 
   let routes = null;
@@ -33,6 +41,8 @@ function App(props) {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/products/:categoryId" component={ProductsPage} />
+      <Route path="/forgot-password" component={ForgotPassword} />
+      <Route path="/reset-password?token=" component={ResetPassword} />
       <Route path="/" component={HomePage} />
     </Switch>
   );
@@ -44,6 +54,7 @@ function App(props) {
         <Route path="/cart" component={Cart} />
         <Route path="/logout" component={Logout} />
         <Route path="/products/:categoryId" component={ProductsPage} />
+        <Route path="/change-password" component={ResetPassword} />
         <Route path="/" component={HomePage} />
       </Switch>
     );
@@ -60,13 +71,15 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.login.accessToken != null,
-    userRole: state.login.userRole
+    userRole: state.login.userRole,
+    authRedirectPath: state.login.authRedirectPath
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLoadTryAutoLogin: () => dispatch(loginActions.checkAuthState())
+    onLoadTryAutoLogin: (history) =>
+      dispatch(loginActions.checkAuthState(history))
   };
 };
 

@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 
 import axios from 'axios';
 import Input from '../Input';
+import FormBox from '../hoc/FormBox';
 import updateObject from '../Utilities/updateObject';
 import checkValidity from '../Utilities/FormValidation';
 import classes from './Signup.module.css';
@@ -180,10 +181,11 @@ const Signup = () => {
   ));
 
   return (
-    <div className={classes.SignupForm}>
+    <FormBox>
       <h1>Signup</h1>
       <form>{formElements}</form>
       <Button
+        className={classes.Button}
         variant="success"
         disabled={!formIsValid}
         active={formIsValid}
@@ -191,7 +193,7 @@ const Signup = () => {
       >
         Signup
       </Button>
-    </div>
+    </FormBox>
   );
 };
 

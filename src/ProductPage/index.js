@@ -8,7 +8,7 @@ import ProductDetails from '../ProductDetails';
 import classes from './ProductPage.module.css';
 
 const ProductPage = (props) => {
-  const { product, getProduct, location, varId } = props;
+  const { product, getProduct, location, varId, setAuthRedirectPath } = props;
 
   let productId;
   let variationId;
@@ -23,6 +23,11 @@ const ProductPage = (props) => {
     variationId = query.get('variationId');
   }
   console.log(productId, variationId);
+
+  useEffect(() => {
+    const { pathname, search } = location;
+    setAuthRedirectPath(`${pathname}${search}`);
+  }, []);
 
   useEffect(() => {
     console.log('useEffect of PRODUCT PAGE');
@@ -93,7 +98,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getProduct: (productId, variationId) =>
-      dispatch(actions.fetchProduct(productId, variationId))
+      dispatch(actions.fetchProduct(productId, variationId)),
+    setAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
   };
 };
 

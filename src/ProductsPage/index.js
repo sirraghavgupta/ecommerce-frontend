@@ -8,12 +8,14 @@ import * as actions from '../store/actions';
 const ProductsPage = (props) => {
   const {
     match,
+    location,
     productItems,
     loading,
     error,
     filters,
     getProducts,
-    getFilters
+    getFilters,
+    setAuthRedirectPath
   } = props;
   const { params } = match;
 
@@ -21,6 +23,11 @@ const ProductsPage = (props) => {
   if (params.hasOwnProperty('categoryId')) {
     categoryId = params.categoryId;
   }
+
+  useEffect(() => {
+    const { pathname, search } = location;
+    setAuthRedirectPath(`${pathname}${search}`);
+  }, []);
 
   useEffect(() => {
     console.log('-------- useEffect of [PRODUCTS PAGE] --------');
@@ -48,7 +55,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: (categoryId) => dispatch(actions.fetchProducts(categoryId)),
-    getFilters: (categoryId) => dispatch(actions.fetchFilters(categoryId))
+    getFilters: (categoryId) => dispatch(actions.fetchFilters(categoryId)),
+    setAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
   };
 };
 

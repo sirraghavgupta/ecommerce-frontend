@@ -7,6 +7,7 @@ const Input = (props) => {
     valid,
     validation,
     touched,
+    elementType,
     elementConfig,
     label,
     value,
@@ -27,14 +28,14 @@ const Input = (props) => {
     );
   }
 
-  switch (props.elementType) {
+  switch (elementType) {
     case 'input':
       inputElement = (
         <input
           className={inputClasses.join(' ')}
           {...elementConfig}
-          value={props.value}
-          onChange={props.changed}
+          value={value}
+          onChange={changed}
         />
       );
       break;
@@ -44,14 +45,14 @@ const Input = (props) => {
         <textarea
           className={inputClasses.join(' ')}
           {...elementConfig}
-          value={props.value}
-          onChange={props.changed}
+          value={value}
+          onChange={changed}
         />
       );
       break;
 
     case 'select':
-      const options = props.elementConfig.options.map((option) => {
+      const options = elementConfig.options.map((option) => {
         return (
           <option value={option.value} key={option.value}>
             {option.displayValue}
@@ -60,7 +61,7 @@ const Input = (props) => {
       });
 
       inputElement = (
-        <select className={inputClasses.join(' ')} onChange={props.changed}>
+        <select className={inputClasses.join(' ')} onChange={changed}>
           {options}
         </select>
       );
@@ -71,8 +72,8 @@ const Input = (props) => {
         <input
           className={inputClasses.join(' ')}
           {...elementConfig}
-          value={props.value}
-          onChange={props.changed}
+          value={value}
+          onChange={changed}
         />
       );
   }
@@ -80,12 +81,7 @@ const Input = (props) => {
   return (
     <div className={classes.Input}>
       <label className={classes.Label}>{`${label}:`}</label>
-      <input
-        className={inputClasses.join(' ')}
-        {...elementConfig}
-        value={value}
-        onChange={changed}
-      />
+      {inputElement}
       {validationError}
     </div>
   );

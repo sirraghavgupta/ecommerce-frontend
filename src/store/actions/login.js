@@ -45,7 +45,7 @@ export const loginFailed = (error) => {
   };
 };
 
-export const login = (email, password) => {
+export const login = (email, password, authRedirectPath, history) => {
   return (dispatch) => {
     dispatch(loginStart());
 
@@ -77,17 +77,25 @@ export const login = (email, password) => {
         localStorage.setItem('userRole', userRole);
 
         dispatch(loginSuccess(accessToken, refreshToken, userRole));
+        history.push(authRedirectPath);
         dispatch(checkAuthTimeout(response.data.expires_in));
+        console.log("login successful end");
       })
       .catch((error) => {
         console.log('login failed with error');
         console.log(error);
-        dispatch(loginFailed(error));
+        let errorMessage;
+        if (error && error.response && error.response.data) {
+          if (error.response.data.error_description) {
+            errorMessage = error.response.data.error_description;
+          } else errorMessage = 'Incorrect Email Id';
+        }
+        dispatch(loginFailed(errorMessage));
       });
   };
 };
 
-export const checkAuthState = () => {
+export const checkAuthState = (history, authRedirectPath) => {
   console.log('inside on try auto login');
   return (dispatch) => {
     console.log('executing the dispatched auto login action...... ');
@@ -109,6 +117,7 @@ export const checkAuthState = () => {
             localStorage.getItem('userRole')
           )
         );
+        history.push(authRedirectPath);
         console.log('auto login complete ....');
         console.log('dispatching the check auth timeout action.....');
         dispatch(
@@ -118,5 +127,12 @@ export const checkAuthState = () => {
         );
       }
     }
+  };
+};
+
+export const setAuthRedirectPath = (path) => {
+  return {
+    type: actionTypes.SET_AUTH_REDIRECT_PATH,
+    path
   };
 };
