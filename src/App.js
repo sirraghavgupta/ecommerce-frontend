@@ -42,7 +42,7 @@ function App(props) {
       <Route path="/signup" component={Signup} />
       <Route path="/products/:categoryId" component={ProductsPage} />
       <Route path="/forgot-password" component={ForgotPassword} />
-      <Route path="/reset-password?token=" component={ResetPassword} />
+      <Route path="/reset-password" component={ResetPassword} />
       <Route path="/" component={HomePage} />
     </Switch>
   );

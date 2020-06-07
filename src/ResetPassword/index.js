@@ -12,7 +12,7 @@ import axios from '../Axios/myInstance';
 import classes from './ResetPassword.module.css';
 
 const ResetPassword = (props) => {
-  const { isAuthenticated, token, doLogout } = props;
+  const { isAuthenticated, token, doLogout, history } = props;
 
   const [passwordResetForm, setPasswordResetForm] = useState({
     currentPassword: {
@@ -162,21 +162,31 @@ const ResetPassword = (props) => {
   return (
     <FormBox>
       <h1>Reset Password</h1>
+
       {message.success.length > 0 ? (
         <p style={{ color: 'green' }}>{message.success}</p>
       ) : null}
+
       {message.error.length > 0 ? (
         <p style={{ color: 'red' }}>{message.error}</p>
       ) : null}
-      <form>{formElements}</form>
-      <Button
-        variant="success"
-        onClick={submitHandler}
-        disabled={!formIsValid}
-        className={classes.Button}
-      >
-        Reset Password
-      </Button>
+
+      {message.success.length > 0 ? (
+        <p>Please login again.</p>
+      ) : (
+        <div>
+          <form>{formElements}</form>
+
+          <Button
+            variant="success"
+            onClick={submitHandler}
+            disabled={!formIsValid}
+            className={classes.Button}
+          >
+            Reset Password
+          </Button>
+        </div>
+      )}
     </FormBox>
   );
 };

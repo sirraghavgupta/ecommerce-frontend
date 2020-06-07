@@ -79,7 +79,7 @@ export const login = (email, password, authRedirectPath, history) => {
         dispatch(loginSuccess(accessToken, refreshToken, userRole));
         history.push(authRedirectPath);
         dispatch(checkAuthTimeout(response.data.expires_in));
-        console.log("login successful end");
+        console.log('login successful end');
       })
       .catch((error) => {
         console.log('login failed with error');

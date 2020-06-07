@@ -26,6 +26,8 @@ const ProductPage = (props) => {
 
   useEffect(() => {
     const { pathname, search } = location;
+    console.log('%%%% PROPS OF PRODUCT PAGE');
+    console.log(props);
     setAuthRedirectPath(`${pathname}${search}`);
   }, []);
 

@@ -7,7 +7,9 @@ import checkValidity from '../Utilities/FormValidation';
 import axios from '../Axios/myInstance';
 import classes from './ForgotPassword.module.css';
 
-const ForgotPassword = () => {
+const ForgotPassword = (props) => {
+  const { history } = props;
+
   const [email, setEmail] = useState({
     elementConfig: {
       type: 'email',
@@ -73,17 +75,26 @@ const ForgotPassword = () => {
         <p style={{ color: 'red' }}>{message.error}</p>
       ) : null}
 
-      <form>
-        <Input changed={inputChangeHandler} {...email} />
-        <Button
-          className={classes.Button}
-          variant="success"
-          disabled={!email.valid}
-          onClick={onSubmitHandler}
-        >
-          Forgot Password
-        </Button>
-      </form>
+      {message.success.length > 0 ? (
+        <div>
+          <p>Click on that link to reset your password.</p>
+          <p>
+            <a href="/">Click here</a> to go back to the home page.
+          </p>
+        </div>
+      ) : (
+        <form>
+          <Input changed={inputChangeHandler} {...email} />
+          <Button
+            className={classes.Button}
+            variant="success"
+            disabled={!email.valid}
+            onClick={onSubmitHandler}
+          >
+            Forgot Password
+          </Button>
+        </form>
+      )}
     </FormBox>
   );
 };
