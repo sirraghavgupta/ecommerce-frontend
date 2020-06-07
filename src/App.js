@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 
 import Layout from './Layout';
 import ProductsPage from './ProductsPage';
@@ -13,6 +13,9 @@ import HomePage from './HomePage';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import ActivateUser from './ActivateUser';
+import Addresses from './Addresses';
+import UserProfile from './UserProfile';
+import Orders from './Orders';
 
 import * as loginActions from './store/actions';
 
@@ -30,7 +33,7 @@ function App(props) {
   });
 
   useEffect(() => {
-    onLoadTryAutoLogin(history, authRedirectPath);
+    onLoadTryAutoLogin();
   }, [onLoadTryAutoLogin]);
 
   let routes = null;
@@ -46,6 +49,11 @@ function App(props) {
       <Route path="/reset-password" component={ResetPassword} />
       <Route path="/activate/" component={ActivateUser} />
       <Route path="/" component={HomePage} />
+
+      {/* <Redirect from="/cart" to="/" />
+      <Redirect from="/logout" to="/" />
+      <Redirect from="/change-password" to="/" />
+      <Redirect from="/user/" to="/" /> */}
     </Switch>
   );
 
@@ -57,7 +65,16 @@ function App(props) {
         <Route path="/logout" component={Logout} />
         <Route path="/products/:categoryId" component={ProductsPage} />
         <Route path="/change-password" component={ResetPassword} />
+        <Route path="/user/profile" component={UserProfile} />
+        <Route path="/user/addresses" component={Addresses} />
+        <Route path="/user/orders" component={Orders} />
         <Route path="/" component={HomePage} />
+        {/* 
+        <Redirect from="/login" to="/" />
+        <Redirect from="/signup" to="/" />
+        <Redirect from="/forgot-password" to="/" />
+        <Redirect from="reset-password" to="/" />
+        <Redirect from="/activate" to="/" /> */}
       </Switch>
     );
   }

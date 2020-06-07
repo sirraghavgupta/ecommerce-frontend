@@ -8,7 +8,9 @@ import updateObject from '../Utilities/updateObject';
 import checkValidity from '../Utilities/FormValidation';
 import classes from './Signup.module.css';
 
-const Signup = () => {
+const Signup = (props) => {
+  const { history } = props;
+
   const [signupForm, setSignupForm] = useState({
     email: {
       elementConfig: {
@@ -175,6 +177,9 @@ const Signup = () => {
             success: response.data.message
           });
         }
+        // eslint-disable-next-line no-alert
+        alert(message.success);
+        history.replace('/login');
       })
       .catch((error) => {
         console.log(error);

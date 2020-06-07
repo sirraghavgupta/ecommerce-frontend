@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { Button } from 'react-bootstrap';
@@ -12,7 +12,23 @@ import axios from '../Axios/myInstance';
 import classes from './ResetPassword.module.css';
 
 const ResetPassword = (props) => {
-  const { isAuthenticated, token, doLogout, history } = props;
+  const { isAuthenticated, token, doLogout, history, location } = props;
+  const { pathname, search } = location;
+
+  let url;
+  let headers = null;
+  url = `${pathname}${search}`;
+  if (isAuthenticated) {
+    url = '/change-password';
+    headers = {
+      Authorization: `Bearer ${token}`
+    };
+    if (search !== '') {
+      history.replace('/');
+    }
+  } else if (search === '') {
+    history.replace('/');
+  }
 
   const [passwordResetForm, setPasswordResetForm] = useState({
     currentPassword: {
@@ -101,18 +117,7 @@ const ResetPassword = (props) => {
   };
 
   const submitHandler = () => {
-    const { location } = props;
-    const { pathname, search } = location;
-    let url = `${pathname}${search}`;
-
-    let headers = null;
-    if (isAuthenticated) {
-      url = '/change-password';
-      headers = {
-        Authorization: `Bearer ${token}`
-      };
-    }
-
+    console.log(url, '0000000000000000000000000');
     axios
       .put(
         url,
@@ -133,10 +138,12 @@ const ResetPassword = (props) => {
           });
         }
         doLogout();
+        // eslint-disable-next-line no-alert
+        alert(message.success);
       })
       .catch((error) => {
         console.log(error);
-        if (error.response.data.message) {
+        if (error && error.response && error.response.data) {
           setMessage({
             success: '',
             error: error.response.data.message
@@ -159,6 +166,10 @@ const ResetPassword = (props) => {
     />
   ));
 
+  const redirectToLoginPage = () => {
+    history.replace('/login');
+  };
+
   return (
     <FormBox>
       <h1>Reset Password</h1>
@@ -172,7 +183,13 @@ const ResetPassword = (props) => {
       ) : null}
 
       {message.success.length > 0 ? (
-        <p>Please login again.</p>
+        <p>
+          Please{' '}
+          <span className={classes.Link} onClick={redirectToLoginPage}>
+            login
+          </span>{' '}
+          again.
+        </p>
       ) : (
         <div>
           <form>{formElements}</form>

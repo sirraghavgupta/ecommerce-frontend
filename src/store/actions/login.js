@@ -77,7 +77,7 @@ export const login = (email, password, authRedirectPath, history) => {
         localStorage.setItem('userRole', userRole);
 
         dispatch(loginSuccess(accessToken, refreshToken, userRole));
-        history.push(authRedirectPath);
+        history.replace(authRedirectPath);
         dispatch(checkAuthTimeout(response.data.expires_in));
         console.log('login successful end');
       })
@@ -95,7 +95,7 @@ export const login = (email, password, authRedirectPath, history) => {
   };
 };
 
-export const checkAuthState = (history, authRedirectPath) => {
+export const checkAuthState = () => {
   console.log('inside on try auto login');
   return (dispatch) => {
     console.log('executing the dispatched auto login action...... ');
@@ -117,7 +117,7 @@ export const checkAuthState = (history, authRedirectPath) => {
             localStorage.getItem('userRole')
           )
         );
-        history.push(authRedirectPath);
+        // history.replace(authRedirectPath);
         console.log('auto login complete ....');
         console.log('dispatching the check auth timeout action.....');
         dispatch(

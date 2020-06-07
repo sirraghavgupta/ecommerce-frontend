@@ -15,6 +15,7 @@ import productsReducer from './store/reducers/products';
 import categoryReducer from './store/reducers/categories';
 import filterReducer from './store/reducers/filters';
 import productReducer from './store/reducers/product';
+import profileReducer from './store/reducers/userProfile';
 
 import './index.css';
 
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   products: productsReducer,
   categoryDrawer: categoryReducer,
   filteringState: filterReducer,
-  productState: productReducer
+  productState: productReducer,
+  profileState: profileReducer
 });
 
 const composeEnhancers =

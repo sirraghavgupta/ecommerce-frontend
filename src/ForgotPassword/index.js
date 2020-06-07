@@ -64,6 +64,10 @@ const ForgotPassword = (props) => {
       });
   };
 
+  const redirectToLoginPage = () => {
+    history.replace('/login');
+  };
+
   return (
     <FormBox>
       <h1>Forgot Password</h1>
@@ -79,7 +83,10 @@ const ForgotPassword = (props) => {
         <div>
           <p>Click on that link to reset your password.</p>
           <p>
-            <a href="/">Click here</a> to go back to the home page.
+            <span onClick={redirectToLoginPage} className={classes.Link}>
+              Click here
+            </span>{' '}
+            to go back to the home page.
           </p>
         </div>
       ) : (

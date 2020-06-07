@@ -11,7 +11,13 @@ const Toolbar = (props) => {
   const navItems = isAuthenticated ? (
     <ul>
       <li>
-        <NavLink to="/orders">My Orders</NavLink>
+        <NavLink to="/user/profile">My Profile</NavLink>
+      </li>
+      <li>
+        <NavLink to="/user/orders">My Orders</NavLink>
+      </li>
+      <li>
+        <NavLink to="/user/addresses">My Addresses</NavLink>
       </li>
       <li>
         <NavLink to="/logout">Logout</NavLink>

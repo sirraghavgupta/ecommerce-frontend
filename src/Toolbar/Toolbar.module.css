@@ -20,7 +20,6 @@
     color : white;
     font-size: 1.5rem;
     letter-spacing: 2px;
-    /* justify-content: space-between; */
 }
 
 .navItems ul{
@@ -29,6 +28,24 @@
     padding: 0;
     display: flex;
 } 
+
+.navItems select{
+    background-color: inherit;
+    color: inherit;
+    border: 0 none;
+    padding: 5px 10px;
+}
+
+.navItems select:focus{
+    border : 0 none;
+    outline: none;
+    outline-offset: 0px;
+}
+
+.navItems select option{
+    background-color: #fff;
+    color: #00737e;
+}
 
 .navItems li{
     color : white;
@@ -50,10 +67,6 @@
     flex: 1;
 }
 
-/* .input{
-    flex: 1;
-} */
-
 .input input{
     width: 500px;
     margin : 0 15px;
@@ -65,8 +78,6 @@
     background-color: #fff;
     color : #00737E;
     font: inherit;
-    /* display: block; */
-    /* width: 100%; */
     box-sizing: border-box;
 }
 
