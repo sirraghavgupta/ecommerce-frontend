@@ -12,6 +12,7 @@ import Logout from './Logout';
 import HomePage from './HomePage';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
+import ActivateUser from './ActivateUser';
 
 import * as loginActions from './store/actions';
 
@@ -43,6 +44,7 @@ function App(props) {
       <Route path="/products/:categoryId" component={ProductsPage} />
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/reset-password" component={ResetPassword} />
+      <Route path="/activate/" component={ActivateUser} />
       <Route path="/" component={HomePage} />
     </Switch>
   );

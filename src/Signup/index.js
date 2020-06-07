@@ -22,52 +22,7 @@ const Signup = () => {
         required: true,
         isEmail: true
       },
-      isValid: true,
-      touched: false
-    },
-    phoneNumber: {
-      elementConfig: {
-        type: 'text',
-        name: 'phoneNumber',
-        placeholder: 'Your Phone Number'
-      },
-      label: 'Phone Number',
-      value: '',
-      validation: {
-        required: true,
-        isPhoneNumber: true
-      },
-      isValid: true,
-      touched: false
-    },
-    password: {
-      elementConfig: {
-        type: 'password',
-        name: 'password',
-        placeholder: 'Your Password'
-      },
-      label: 'Password',
-      value: '',
-      validation: {
-        required: true,
-        validPassword: true
-      },
-      isValid: true,
-      touched: false
-    },
-    confirmPassword: {
-      elementConfig: {
-        type: 'password',
-        name: 'confirmPassword',
-        placeholder: 'Confirm Your Password'
-      },
-      label: 'Confirm Password',
-      value: '',
-      validation: {
-        required: true,
-        matchPassword: true
-      },
-      isValid: true,
+      valid: true,
       touched: false
     },
     firstName: {
@@ -82,7 +37,7 @@ const Signup = () => {
         required: true,
         isCharOnly: true
       },
-      isValid: true,
+      valid: true,
       touched: false
     },
     middleName: {
@@ -97,7 +52,7 @@ const Signup = () => {
         isCharOnly: false,
         required: false
       },
-      isValid: true,
+      valid: true,
       touched: false
     },
     lastName: {
@@ -112,12 +67,62 @@ const Signup = () => {
         required: true,
         isCharOnly: true
       },
-      isValid: true,
+      valid: true,
+      touched: false
+    },
+    password: {
+      elementConfig: {
+        type: 'password',
+        name: 'password',
+        placeholder: 'Your Password'
+      },
+      label: 'Password',
+      value: '',
+      validation: {
+        required: true,
+        validPassword: true
+      },
+      valid: true,
+      touched: false
+    },
+    confirmPassword: {
+      elementConfig: {
+        type: 'password',
+        name: 'confirmPassword',
+        placeholder: 'Confirm Your Password'
+      },
+      label: 'Confirm Password',
+      value: '',
+      validation: {
+        required: true,
+        matchPassword: true
+      },
+      valid: true,
+      touched: false
+    },
+    phoneNumber: {
+      elementConfig: {
+        type: 'text',
+        name: 'phoneNumber',
+        placeholder: 'Your Phone Number'
+      },
+      label: 'Phone Number',
+      value: '',
+      validation: {
+        required: true,
+        isPhoneNumber: true
+      },
+      valid: true,
       touched: false
     }
   });
 
   const [formIsValid, setFormIsValid] = useState(false);
+
+  const [message, setMessage] = useState({
+    success: '',
+    error: ''
+  });
 
   const inputChangeHandler = (event, fieldname) => {
     let isValid = true;
@@ -164,9 +169,27 @@ const Signup = () => {
       .post('http://localhost:8080/register/customer', newCustomer)
       .then((response) => {
         console.log(response);
+        if (response.data && response.data.message) {
+          setMessage({
+            error: '',
+            success: response.data.message
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
+        let errorMessage = 'Something went wrong!!';
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          errorMessage = error.response.data.message;
+        }
+        setMessage({
+          success: '',
+          error: errorMessage
+        });
       });
   };
 
@@ -183,6 +206,15 @@ const Signup = () => {
   return (
     <FormBox>
       <h1>Signup</h1>
+
+      {message.success.length > 0 ? (
+        <p style={{ color: 'green' }}>{message.success}</p>
+      ) : null}
+
+      {message.error.length > 0 ? (
+        <p style={{ color: 'red' }}>{message.error}</p>
+      ) : null}
+
       <form>{formElements}</form>
       <Button
         className={classes.Button}
