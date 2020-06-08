@@ -1,3 +1,9 @@
 .Button {
     margin: 30px;
 }
+
+.Link {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}

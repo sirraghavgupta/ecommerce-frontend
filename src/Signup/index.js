@@ -5,6 +5,7 @@ import axios from 'axios';
 import Input from '../Input';
 import FormBox from '../hoc/FormBox';
 import updateObject from '../Utilities/updateObject';
+import Aux from '../Aux';
 import checkValidity from '../Utilities/FormValidation';
 import classes from './Signup.module.css';
 
@@ -171,15 +172,15 @@ const Signup = (props) => {
       .post('http://localhost:8080/register/customer', newCustomer)
       .then((response) => {
         console.log(response);
-        if (response.data && response.data.message) {
+        if (response && response.data) {
+          console.log('setting the state');
           setMessage({
             error: '',
             success: response.data.message
           });
         }
-        // eslint-disable-next-line no-alert
-        alert(message.success);
-        history.replace('/login');
+        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$');
+        console.log(message.success);
       })
       .catch((error) => {
         console.log(error);
@@ -208,6 +209,10 @@ const Signup = (props) => {
     />
   ));
 
+  const redirectToLoginPage = () => {
+    history.replace('/login');
+  };
+
   return (
     <FormBox>
       <h1>Signup</h1>
@@ -220,16 +225,28 @@ const Signup = (props) => {
         <p style={{ color: 'red' }}>{message.error}</p>
       ) : null}
 
-      <form>{formElements}</form>
-      <Button
-        className={classes.Button}
-        variant="success"
-        disabled={!formIsValid}
-        active={formIsValid}
-        onClick={submitHandler}
-      >
-        Signup
-      </Button>
+      {message.success.length > 0 ? (
+        <p>
+          Click on that link to activate your account. Click{' '}
+          <span onClick={redirectToLoginPage} className={classes.Link}>
+            here
+          </span>{' '}
+          to login now.
+        </p>
+      ) : (
+        <Aux>
+          <form>{formElements}</form>
+          <Button
+            className={classes.Button}
+            variant="success"
+            disabled={!formIsValid}
+            active={formIsValid}
+            onClick={submitHandler}
+          >
+            Signup
+          </Button>
+        </Aux>
+      )}
     </FormBox>
   );
 };
