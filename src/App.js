@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, withRouter, NavLink } from 'react-router-dom';
 
 import Layout from './Layout';
 import ProductsPage from './ProductsPage';
@@ -48,16 +48,21 @@ function App(props) {
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/reset-password" component={ResetPassword} />
       <Route path="/activate/" component={ActivateUser} />
-      <Route path="/" component={HomePage} />
-
-      {/* <Redirect from="/cart" to="/" />
-      <Redirect from="/logout" to="/" />
-      <Redirect from="/change-password" to="/" />
-      <Redirect from="/user/" to="/" /> */}
+      <Route exact path="/" component={HomePage} />
+      <Route
+        render={() => {
+          return (
+            <div>
+              Not a valid route. PLease go back to <a href="/">Home</a>
+            </div>
+          );
+        }}
+      />
     </Switch>
   );
 
   if (isAuthenticated) {
+    console.log('inside isAuthenticated =======================');
     routes = (
       <Switch>
         <Route path="/product" component={ProductPage} />
@@ -68,13 +73,16 @@ function App(props) {
         <Route path="/user/profile" component={UserProfile} />
         <Route path="/user/addresses" component={Addresses} />
         <Route path="/user/orders" component={Orders} />
-        <Route path="/" component={HomePage} />
-        {/* 
-        <Redirect from="/login" to="/" />
-        <Redirect from="/signup" to="/" />
-        <Redirect from="/forgot-password" to="/" />
-        <Redirect from="reset-password" to="/" />
-        <Redirect from="/activate" to="/" /> */}
+        <Route exact path="/" component={HomePage} />
+        <Route
+          render={() => {
+            return (
+              <div>
+                Not a valid route. PLease go back to <a href="/">Home</a>
+              </div>
+            );
+          }}
+        />
       </Switch>
     );
   }
