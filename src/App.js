@@ -41,13 +41,13 @@ function App(props) {
   // if (userRole === 'CUSTOMER') {
   routes = (
     <Switch>
-      <Route path="/product" component={ProductPage} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
+      <Route exact path="/product" component={ProductPage} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
       <Route path="/products/:categoryId" component={ProductsPage} />
-      <Route path="/forgot-password" component={ForgotPassword} />
-      <Route path="/reset-password" component={ResetPassword} />
-      <Route path="/activate/" component={ActivateUser} />
+      <Route exact path="/forgot-password" component={ForgotPassword} />
+      <Route exact path="/reset-password" component={ResetPassword} />
+      <Route exact path="/activate/customer" component={ActivateUser} />
       <Route exact path="/" component={HomePage} />
       <Route
         render={() => {
@@ -65,14 +65,14 @@ function App(props) {
     console.log('inside isAuthenticated =======================');
     routes = (
       <Switch>
-        <Route path="/product" component={ProductPage} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/logout" component={Logout} />
+        <Route exact path="/product" component={ProductPage} />
+        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/logout" component={Logout} />
         <Route path="/products/:categoryId" component={ProductsPage} />
-        <Route path="/change-password" component={ResetPassword} />
-        <Route path="/user/profile" component={UserProfile} />
-        <Route path="/user/addresses" component={Addresses} />
-        <Route path="/user/orders" component={Orders} />
+        <Route exact path="/change-password" component={ResetPassword} />
+        <Route exact path="/user/profile" component={UserProfile} />
+        <Route exact path="/user/addresses" component={Addresses} />
+        <Route exact path="/user/orders" component={Orders} />
         <Route exact path="/" component={HomePage} />
         <Route
           render={() => {
