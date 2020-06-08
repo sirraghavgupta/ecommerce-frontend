@@ -2,20 +2,20 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
-import Layout from './Layout';
-import ProductsPage from './ProductsPage';
-import ProductPage from './ProductPage';
-import Cart from './Cart';
-import Login from './Login';
-import Signup from './Signup';
-import Logout from './Logout';
-import HomePage from './HomePage';
-import ForgotPassword from './ForgotPassword';
-import ResetPassword from './ResetPassword';
-import ActivateUser from './ActivateUser';
-import Addresses from './Addresses';
-import UserProfile from './UserProfile';
-import Orders from './Orders';
+import Layout from './containers/Layout';
+import ProductsPage from './containers/ProductsPage';
+import ProductPage from './containers/ProductPage';
+import Cart from './containers/Cart';
+import Login from './containers/Login';
+import Signup from './containers/Signup';
+import Logout from './containers/Logout';
+import HomePage from './containers/HomePage';
+import ForgotPassword from './containers/ForgotPassword';
+import ResetPassword from './containers/ResetPassword';
+import ActivateUser from './containers/ActivateUser';
+import Addresses from './containers/Addresses';
+import UserProfile from './containers/UserProfile';
+import Orders from './containers/Orders';
 
 import * as loginActions from './store/actions';
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import convertProductToVariationsArray from '../../ProductGrid/convertProductToVariationsArray';
+import convertProductToVariationsArray from '../../components/Products/ProductGrid/convertProductToVariationsArray';
 import * as actionTypes from './actionTypes';
 
 export const fetchProductsStart = () => {
