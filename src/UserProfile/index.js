@@ -11,7 +11,8 @@ import axios from '../Axios/myInstance';
 import classes from './UserProfile.module.css';
 
 const UserProfile = (props) => {
-  const { token } = props;
+  const { token, history, location } = props;
+  const { pathname } = location;
 
   const [profileForm, setProfileForm] = useState({
     firstName: {
@@ -58,7 +59,10 @@ const UserProfile = (props) => {
     }
   });
   const [profile, setProfile] = useState({});
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState({
+    success: '',
+    error: ''
+  });
   const [updateMode, setUpdateMode] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);
   const [image, setImage] = useState('');
@@ -72,8 +76,9 @@ const UserProfile = (props) => {
       })
       .then((response) => {
         console.log(response);
-        if (response.data.data)
+        if (response.data.data) {
           setProfile({ ...response.data.data, isActive: 'true' });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -81,12 +86,19 @@ const UserProfile = (props) => {
         if (err && err.response && err.response.data) {
           errorMessage = err.response.data.message;
         }
-        setError(errorMessage);
+        setMessage({
+          success: '',
+          error: errorMessage
+        });
       });
   }, []);
 
   const updateProfileHandler = () => {
     setUpdateMode((state) => !state);
+    setMessage({
+      error: '',
+      success: ''
+    });
   };
 
   const inputChangeHandler = (event, fieldname) => {
@@ -165,13 +177,21 @@ const UserProfile = (props) => {
             };
           });
           setUpdateMode((state) => !state);
-          setError(null);
+          setMessage({
+            error: '',
+            success: response.data.message
+          });
         })
         .catch((err) => {
           console.log(err);
+          let errorMessage = 'Something went wrong!!';
           if (err && err.response && err.response.data) {
-            setError(err.response.data.message);
+            errorMessage = err.response.data.message;
           }
+          setMessage({
+            error: errorMessage,
+            success: ''
+          });
         });
     } else setUpdateMode((state) => !state);
   };
@@ -192,22 +212,35 @@ const UserProfile = (props) => {
       })
       .then((response) => {
         console.log(response);
-        setError(null);
+        setMessage({
+          error: '',
+          success: response.data.message
+        });
+
+        history.replace('/user/profile');
       })
       .catch((err) => {
         console.log(err.response);
         let errorMessage = 'Something went wrong';
-        if (error && error.response && error.response.data) {
-          errorMessage = error.response.data.message;
+        if (err && err.response && err.response.data) {
+          errorMessage = err.response.data.message;
         }
-        setError(errorMessage);
+        setMessage({
+          error: errorMessage,
+          success: ''
+        });
       });
   };
 
   let content = (
     <div className={classes.UserProfile}>
       <h1 className={classes.Header}>Your Profile</h1>
-      {error ? <p>{error}</p> : null}
+      {message.success.length > 0 ? (
+        <p style={{ color: 'green' }}>{message.success}</p>
+      ) : null}
+      {message.error.length > 0 ? (
+        <p style={{ color: 'red' }}>{message.error}</p>
+      ) : null}
       <div className={classes.Container}>
         <div className={classes.Image}>
           <img src={profile.image} alt="profile" />
@@ -217,20 +250,19 @@ const UserProfile = (props) => {
               variant="success"
               className={classes.Button}
               onClick={imageUpdateHandler}
+              disabled={image === ''}
             >
               Update Image
             </Button>
           </form>
         </div>
-        <table className={classes.Table}>{profileDetails}</table>
+        <div className={classes.Table}>
+          <table>{profileDetails} </table>
+          <Button variant="success" onClick={updateProfileHandler}>
+            Update Profile
+          </Button>
+        </div>
       </div>
-      <Button
-        variant="success"
-        className={classes.Button}
-        onClick={updateProfileHandler}
-      >
-        Update Profile
-      </Button>
     </div>
   );
 
@@ -238,7 +270,12 @@ const UserProfile = (props) => {
     content = (
       <FormBox>
         <h1>Update Profile</h1>
-        {error ? <p>{error}</p> : null}
+        {message.success.length > 0 ? (
+          <p style={{ color: 'green' }}>{message.success}</p>
+        ) : null}
+        {message.error.length > 0 ? (
+          <p style={{ color: 'red' }}>{message.error}</p>
+        ) : null}
         {profileElements}
         <Button
           variant="success"

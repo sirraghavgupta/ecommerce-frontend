@@ -12,9 +12,14 @@
 
 .Table {
     padding: 0 auto;
-    /* padding-left: 60px; */
     width: 60%;
     float: left;
+}
+
+
+.Table Button {
+    margin: 20px auto;
+    width: 50%;
 }
 
 .Container {
@@ -39,11 +44,15 @@
 
 .Image {
     width: 30%;
-    height: 200px;
+    height: 300px;
     float: left;
     margin: 10px auto;
     /* display: flex; */
     /* align-items: center; */
+}
+
+.Image input {
+    margin-top: 20px;
 }
 
 .Image img {
