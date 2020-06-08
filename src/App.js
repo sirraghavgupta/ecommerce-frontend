@@ -1,23 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
 import Layout from './containers/Layout';
 import ProductsPage from './containers/ProductsPage';
 import ProductPage from './containers/ProductPage';
-import Cart from './containers/Cart';
-import Login from './containers/Login';
-import Signup from './containers/Signup';
-import Logout from './containers/Logout';
 import HomePage from './containers/HomePage';
-import ForgotPassword from './containers/ForgotPassword';
-import ResetPassword from './containers/ResetPassword';
-import ActivateUser from './containers/ActivateUser';
-import Addresses from './containers/Addresses';
-import UserProfile from './containers/UserProfile';
-import Orders from './containers/Orders';
 
 import * as loginActions from './store/actions';
+
+const Cart = React.lazy(() => {
+  return import('./containers/Cart');
+});
+
+const Login = React.lazy(() => {
+  return import('./containers/Login');
+});
+
+const Signup = React.lazy(() => {
+  return import('./containers/Signup');
+});
+
+const Logout = React.lazy(() => {
+  return import('./containers/Logout');
+});
+
+const ForgotPassword = React.lazy(() => {
+  return import('./containers/ForgotPassword');
+});
+
+const ResetPassword = React.lazy(() => {
+  return import('./containers/ResetPassword');
+});
+
+const ActivateUser = React.lazy(() => {
+  return import('./containers/ActivateUser');
+});
+
+const Addresses = React.lazy(() => {
+  return import('./containers/Addresses');
+});
+
+const UserProfile = React.lazy(() => {
+  return import('./containers/UserProfile');
+});
+
+const Orders = React.lazy(() => {
+  return import('./containers/Orders');
+});
 
 function App(props) {
   const { onLoadTryAutoLogin, isAuthenticated } = props;
@@ -36,12 +66,24 @@ function App(props) {
   routes = (
     <Switch>
       <Route exact path="/product" component={ProductPage} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/login" render={(props) => <Login {...props} />} />
+      <Route exact path="/signup" render={(props) => <Signup {...props} />} />
       <Route path="/products/:categoryId" component={ProductsPage} />
-      <Route exact path="/forgot-password" component={ForgotPassword} />
-      <Route exact path="/reset-password" component={ResetPassword} />
-      <Route exact path="/activate/customer" component={ActivateUser} />
+      <Route
+        exact
+        path="/forgot-password"
+        render={(props) => <ForgotPassword {...props} />}
+      />
+      <Route
+        exact
+        path="/reset-password"
+        render={(props) => <ResetPassword {...props} />}
+      />
+      <Route
+        exact
+        path="/activate/customer"
+        render={(props) => <ActivateUser {...props} />}
+      />
       <Route exact path="/" component={HomePage} />
       <Route
         render={() => {
@@ -60,13 +102,29 @@ function App(props) {
     routes = (
       <Switch>
         <Route exact path="/product" component={ProductPage} />
-        <Route exact path="/cart" component={Cart} />
-        <Route exact path="/logout" component={Logout} />
+        <Route exact path="/cart" render={(props) => <Cart {...props} />} />
+        <Route exact path="/logout" render={(props) => <Logout {...props} />} />
         <Route path="/products/:categoryId" component={ProductsPage} />
-        <Route exact path="/change-password" component={ResetPassword} />
-        <Route exact path="/user/profile" component={UserProfile} />
-        <Route exact path="/user/addresses" component={Addresses} />
-        <Route exact path="/user/orders" component={Orders} />
+        <Route
+          exact
+          path="/change-password"
+          render={(props) => <ResetPassword {...props} />}
+        />
+        <Route
+          exact
+          path="/user/profile"
+          render={(props) => <UserProfile {...props} />}
+        />
+        <Route
+          exact
+          path="/user/addresses"
+          render={(props) => <Addresses {...props} />}
+        />
+        <Route
+          exact
+          path="/user/orders"
+          render={(props) => <Orders {...props} />}
+        />
         <Route exact path="/" component={HomePage} />
         <Route
           render={() => {
@@ -84,7 +142,9 @@ function App(props) {
 
   return (
     <div>
-      <Layout>{routes}</Layout>
+      <Layout>
+        <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
+      </Layout>
     </div>
   );
 }
