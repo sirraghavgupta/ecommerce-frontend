@@ -9,10 +9,8 @@ const HomePage = (props) => {
   const { setAuthRedirectPath } = props;
 
   useEffect(() => {
-    console.log('%%%% PROPS OF HOME PAGE');
-    console.log(props);
     setAuthRedirectPath('/');
-  }, []);
+  }, [setAuthRedirectPath]);
 
   return <p className={classes.HomePage}>Home page</p>;
 };

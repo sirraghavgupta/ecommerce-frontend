@@ -15,6 +15,8 @@ const ProductsPage = (props) => {
     getFilters,
     setAuthRedirectPath
   } = props;
+
+  const { pathname, search } = location;
   const { params } = match;
 
   let categoryId = null;
@@ -23,17 +25,17 @@ const ProductsPage = (props) => {
   }
 
   useEffect(() => {
-    const { pathname, search } = location;
-    console.log('%%%% PROPS OF PRODUCTS PAGE');
-    console.log(props);
     setAuthRedirectPath(`${pathname}${search}`);
-  }, []);
-
-  useEffect(() => {
-    console.log('-------- useEffect of [PRODUCTS PAGE] --------');
     getProducts(categoryId);
     getFilters(categoryId);
-  }, [categoryId]);
+  }, [
+    setAuthRedirectPath,
+    pathname,
+    search,
+    categoryId,
+    getProducts,
+    getFilters
+  ]);
 
   return (
     <div>
