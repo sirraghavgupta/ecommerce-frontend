@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter, NavLink } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import Layout from './Layout';
 import ProductsPage from './ProductsPage';
@@ -20,13 +20,7 @@ import Orders from './Orders';
 import * as loginActions from './store/actions';
 
 function App(props) {
-  const {
-    onLoadTryAutoLogin,
-    isAuthenticated,
-    userRole,
-    history,
-    authRedirectPath
-  } = props;
+  const { onLoadTryAutoLogin, isAuthenticated } = props;
 
   useEffect(() => {
     console.log('useEffect of APP');

@@ -10,8 +10,6 @@ const ProductsPage = (props) => {
     match,
     location,
     productItems,
-    loading,
-    error,
     filters,
     getProducts,
     getFilters,

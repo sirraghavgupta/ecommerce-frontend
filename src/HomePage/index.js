@@ -6,14 +6,11 @@ import * as actions from '../store/actions';
 import classes from './HomePage.module.css';
 
 const HomePage = (props) => {
-  const { location, setAuthRedirectPath } = props;
+  const { setAuthRedirectPath } = props;
 
   useEffect(() => {
-    // const { pathname, search } = location;
     console.log('%%%% PROPS OF HOME PAGE');
     console.log(props);
-    // console.log(`${pathname}${search}`);
-    // setAuthRedirectPath(`${pathname}${search}`);
     setAuthRedirectPath('/');
   }, []);
 

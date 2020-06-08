@@ -5,7 +5,7 @@ import Filter from '../Filter';
 import classes from './Filters.module.css';
 
 const Filters = (props) => {
-  const { loading, error, filters } = props;
+  const { filters } = props;
 
   console.log(props);
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Toolbar from '../Toolbar';
@@ -13,8 +13,6 @@ const Layout = (props) => {
   const {
     children,
     categories,
-    loading,
-    error,
     getCategories,
     toggleCategories,
     showCategoryDrawer,

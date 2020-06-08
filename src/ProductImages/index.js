@@ -12,13 +12,6 @@ const ProductImages = (props) => {
   } = props;
 
   const thumbnails = [...secondaryImages, primaryImage];
-  /**
-   * problem in this component - this line is getting printed twice everytime.
-   * but use effis printing only once. i dont know why.
-   * plus, react is not re initialising the secondary images array. and if i
-   * do push on the secondaryImages array, its getting duplicate primmary images
-   * evrrytime.
-   */
   console.log(thumbnails);
 
   const [currImage, setCurrImage] = useState(primaryImage);
@@ -39,6 +32,7 @@ const ProductImages = (props) => {
           {thumbnails.map((image, index) => (
             <SecondaryImageThumbnail
               imageUrl={image}
+              // eslint-disable-next-line react/no-array-index-key
               key={index}
               clicked={() => {
                 thumbnailClickHandler(index);

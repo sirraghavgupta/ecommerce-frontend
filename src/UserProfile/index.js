@@ -11,8 +11,7 @@ import axios from '../Axios/myInstance';
 import classes from './UserProfile.module.css';
 
 const UserProfile = (props) => {
-  const { token, history, location } = props;
-  const { pathname } = location;
+  const { token, history } = props;
 
   const [profileForm, setProfileForm] = useState({
     firstName: {
